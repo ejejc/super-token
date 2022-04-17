@@ -2,6 +2,7 @@ package letsgetit.auth.supertoken.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -11,6 +12,10 @@ import javax.validation.constraints.Email;
         name = "users",
         uniqueConstraints = @UniqueConstraint(columnNames = "email")
 )
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Builder
+@AllArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
