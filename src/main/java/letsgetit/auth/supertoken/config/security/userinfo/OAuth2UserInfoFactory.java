@@ -1,4 +1,4 @@
-package letsgetit.auth.supertoken.config.security;
+package letsgetit.auth.supertoken.config.security.userinfo;
 
 import letsgetit.auth.supertoken.config.exception.OAuth2AuthenticationProcessingException;
 import letsgetit.auth.supertoken.domain.AuthProvider;

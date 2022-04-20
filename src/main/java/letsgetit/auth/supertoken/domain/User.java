@@ -42,4 +42,8 @@ public class User {
 
     private String providerId;
 
+    public void updateExistingUserInfo(String name, String imageUrl) {
+        this.name = name;
+        this.imageUrl = imageUrl;
+    }
 }

@@ -1,4 +1,4 @@
-package letsgetit.auth.supertoken.config.security;
+package letsgetit.auth.supertoken.config.security.userinfo;
 
 import java.util.Map;
 

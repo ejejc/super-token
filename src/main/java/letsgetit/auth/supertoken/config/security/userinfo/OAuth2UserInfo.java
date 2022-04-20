@@ -1,4 +1,4 @@
-package letsgetit.auth.supertoken.config.security;
+package letsgetit.auth.supertoken.config.security.userinfo;
 
 import java.util.Map;
 
@@ -9,7 +9,7 @@ public abstract class OAuth2UserInfo {
         this.attributes = attributes;
     }
 
-    public Map<String, Object> getATTRIBUTES () {
+    public Map<String, Object> getAttributes () {
         return attributes;
     }
 
