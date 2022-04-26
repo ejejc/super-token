@@ -1,19 +1,25 @@
 package letsgetit.auth.supertoken.contorller;
 
 import letsgetit.auth.supertoken.google.service.GoogleOauthService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RequiredArgsConstructor
+@RestController
 public class TestController {
 
-    @Autowired
-    private GoogleOauthService googleOauthService;
+    private final GoogleOauthService googleOauthService;
 
     @GetMapping ("/home")
-    public void home(@RequestParam String code) {
-       googleOauthService.getToken(code);
+    public ResponseEntity<String> home(@RequestParam String code, @RequestParam String state) {
+       return googleOauthService.getToken(code, state);
+    }
+
+    @GetMapping ("/error")
+    public ResponseEntity<String> error() {
+        return ResponseEntity.badRequest().body("OAuth Flow Error");
     }
 }
