@@ -16,4 +16,9 @@ public class TestController {
     public void home(@RequestParam String code) {
        googleOauthService.getToken(code);
     }
+
+    @GetMapping("/")
+    public String main() {
+        return "hello";
+    }
 }

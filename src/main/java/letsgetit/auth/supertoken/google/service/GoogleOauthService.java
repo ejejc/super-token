@@ -1,19 +1,17 @@
 package letsgetit.auth.supertoken.google.service;
 
-import com.sun.istack.Nullable;
-import java.util.List;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Objects;
 import letsgetit.auth.supertoken.google.domain.GoogleOAuthRequest;
+import letsgetit.auth.supertoken.google.domain.GoogleProfileInfo;
 import letsgetit.auth.supertoken.google.domain.GoogleResult;
 import letsgetit.auth.supertoken.google.feign.GoogleFeignClient;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.ClientHttpResponse;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -28,6 +26,7 @@ public class GoogleOauthService {
     private static final String REDIRECT_URL = "http://localhost:8080/home";
     private static final String TYPE = "code";
     private static final String SCOPE ="https://www.googleapis.com/auth/userinfo.profile";
+    private static final String GOOGLE_BASE_URL = "https://accounts.google.com/o/oauth2/auth/oauthchooseaccount";
 
     public void getToken(String code) {
         RestTemplate restTemplate = new RestTemplate();
@@ -53,7 +52,24 @@ public class GoogleOauthService {
         GoogleResult result = response.getBody();
         if(Objects.nonNull(result.getAccessToken())) {
             // access token 을 사용하여 Google API 호출
-            ResponseEntity<String> responseEntity = restTemplate.getForEntity("https://www.googleapis.com/oauth2/v2/userinfo?access_token" +result.getAccessToken(), String.class);
+            ResponseEntity<GoogleProfileInfo> responseEntity = restTemplate.getForEntity("https://www.googleapis.com/oauth2/v2/userinfo?access_token=" +result.getAccessToken(), GoogleProfileInfo.class);
+            GoogleProfileInfo body = responseEntity.getBody();
         }
+    }
+
+    public HttpHeaders getCode() {
+        // access_type = offline : refresh token 발급 방식 지정
+        // prompt = consent : 매번 동의를 구한다.
+        String authUrl = GOOGLE_BASE_URL+"?client_id="+GOOGLE_CLIENT_ID+"&redirect_uri="+REDIRECT_URL+"&response_type="+TYPE+"&scope="+SCOPE+"&access_type=offline&prompt=consent";
+        URI redirectUri = null;
+        try {
+            redirectUri = new URI(authUrl);
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.setLocation(redirectUri);
+            return httpHeaders;
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
