@@ -2,6 +2,7 @@ package letsgetit.auth.supertoken.superproject.domain.posts;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import org.aspectj.lang.annotation.After;
 import org.assertj.core.api.Assertions;
@@ -41,5 +42,27 @@ class PostsRepositoryTest {
         Posts posts = postsList.get(0);
         Assertions.assertThat(posts.getTitle()).isEqualTo(title);
         Assertions.assertThat(posts.getContent()).isEqualTo(content);
+    }
+
+    @Test
+    public void BaseTimeEntity_등록() {
+        // given
+        LocalDateTime now = LocalDateTime.of(2022, 5,17, 10,03,0,0);
+        postsRepository.save(Posts.builder()
+        .title("title")
+        .content("content")
+        .author("author").build());
+
+        // when
+        List<Posts> postsList = postsRepository.findAll();
+
+        // then
+        Posts posts = postsList.get(0);
+
+        System.out.println(">>>>> createDate=" + posts.getCreatedDate()
+            + ", modifiedDate =" + posts.getModifiedDate());
+
+        Assertions.assertThat(posts.getCreatedDate()).isAfter(now);
+        Assertions.assertThat(posts.getModifiedDate()).isAfter(now);
     }
 }
