@@ -4,7 +4,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
-#        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
 
   datasource:
     hikari:
@@ -14,6 +14,6 @@ spring:
       driver-class-name: org.h2.Driver
 
 
-#  h2:
-#    console:
-#      enabled: true
+  h2:
+    console:
+      enabled: true
