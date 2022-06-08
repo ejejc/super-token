@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class PostsService {
 
     private final PostsRepository postsRepository;
-
+    private String a = "";
     public Long save(PostsSaveRequestDto postsRequestDto) {
         return postsRepository.save(postsRequestDto.toEntity()).getId();
     }
