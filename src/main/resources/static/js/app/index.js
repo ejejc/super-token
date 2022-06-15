@@ -8,6 +8,10 @@ const main = {
         $('#btn-update').on('click', function() {
             _this.update();
         });
+
+        $('#btn-delete').on('click', function() {
+            _this.delete();
+        });
     },
 
     save : function() {
@@ -41,12 +45,27 @@ const main = {
 
         $.ajax({
             type: 'PUT',
-            url: '/api/v1/posts',
+            url: '/api/v1/posts/' + id,
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function () {
-            alert('글이 등록되었다 모이야~');
+            alert('글이 수정 되었따, 모이야~');
+            window.location.href = '/';
+        }).fail(function(error) {
+            alert(JSON.stringify(error));
+        });
+    },
+
+    delete : function() {
+        const id = $('#id').val();
+        $.ajax({
+            type: 'DELETE',
+            url: '/api/v1/posts/' + id,
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+        }).done(function () {
+            alert('글이 삭제 되었따, 모이야~');
             window.location.href = '/';
         }).fail(function(error) {
             alert(JSON.stringify(error));
