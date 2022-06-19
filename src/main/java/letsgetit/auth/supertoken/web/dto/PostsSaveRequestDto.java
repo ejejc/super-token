@@ -1,6 +1,6 @@
 package letsgetit.auth.supertoken.web.dto;
 
-import letsgetit.auth.supertoken.domain.Posts;
+import letsgetit.auth.supertoken.domain.post.Posts;
 import lombok.*;
 
 @Getter

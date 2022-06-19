@@ -1,11 +1,12 @@
 package letsgetit.auth.supertoken.domain;
 
+import letsgetit.auth.supertoken.domain.post.Posts;
+import letsgetit.auth.supertoken.domain.post.PostsRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 import java.time.LocalDateTime;
 import java.util.List;

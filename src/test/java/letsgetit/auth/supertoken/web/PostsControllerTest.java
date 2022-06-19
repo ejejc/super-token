@@ -1,7 +1,7 @@
 package letsgetit.auth.supertoken.web;
 
-import letsgetit.auth.supertoken.domain.Posts;
-import letsgetit.auth.supertoken.domain.PostsRepository;
+import letsgetit.auth.supertoken.domain.post.Posts;
+import letsgetit.auth.supertoken.domain.post.PostsRepository;
 import letsgetit.auth.supertoken.web.dto.PostsSaveRequestDto;
 import letsgetit.auth.supertoken.web.dto.PostsUpdateRequestDto;
 import org.assertj.core.api.Assertions;

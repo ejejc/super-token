@@ -1,12 +1,11 @@
 package letsgetit.auth.supertoken.service;
 
-import letsgetit.auth.supertoken.domain.Posts;
-import letsgetit.auth.supertoken.domain.PostsRepository;
+import letsgetit.auth.supertoken.domain.post.Posts;
+import letsgetit.auth.supertoken.domain.post.PostsRepository;
 import letsgetit.auth.supertoken.web.dto.PostsListResponseDto;
 import letsgetit.auth.supertoken.web.dto.PostsResponseDto;
 import letsgetit.auth.supertoken.web.dto.PostsSaveRequestDto;
 import letsgetit.auth.supertoken.web.dto.PostsUpdateRequestDto;
-import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

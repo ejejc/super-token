@@ -1,5 +1,7 @@
 package letsgetit.auth.supertoken.web;
 
+import letsgetit.auth.supertoken.service.EnumService;
+import letsgetit.auth.supertoken.service.MustacheService;
 import letsgetit.auth.supertoken.service.PostsService;
 import letsgetit.auth.supertoken.web.dto.PostsResponseDto;
 import letsgetit.auth.supertoken.web.dto.PostsSaveRequestDto;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 public class PostsController {
 
     private final PostsService postsService;
+    private final MustacheService mustacheService;
+    private final EnumService enumService;
 
     @PostMapping("/posts")
     public Long save(@RequestBody PostsSaveRequestDto requestDto) {
@@ -38,6 +42,11 @@ public class PostsController {
 
     @GetMapping("/mustache")
     public void mustacheTest() {
+        mustacheService.testMustache();
+    }
 
+    @GetMapping("/enum")
+    public void enumTest() {
+        enumService.test();
     }
 }
