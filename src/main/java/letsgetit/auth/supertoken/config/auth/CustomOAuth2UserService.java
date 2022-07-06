@@ -3,6 +3,7 @@ package letsgetit.auth.supertoken.config.auth;
 import java.util.Collections;
 import javax.servlet.http.HttpSession;
 import letsgetit.auth.supertoken.config.auth.dto.OAuthAttributes;
+import letsgetit.auth.supertoken.config.auth.dto.SessionUser;
 import letsgetit.auth.supertoken.superproject.domain.user.User;
 import letsgetit.auth.supertoken.superproject.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
