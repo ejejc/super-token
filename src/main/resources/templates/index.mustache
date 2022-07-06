@@ -1,0 +1,49 @@
+{{>layout/header}}
+<h1>🎡🎡 웹서비스 고고 🎡🎡</h1>
+<br>
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6">
+            <a href="/posts/save" role="button" class="btn btn-primary">글 등록 모이야~</a>
+
+            {{#userName}}
+                Logged in as :
+                {{#picture}}
+                        <img src="{{picture}}">
+                {{/picture}}
+                <span id="user">{{userName}}</span>
+                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+            {{/userName}}
+            {{^userName}}
+                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+            {{/userName}}
+        </div>
+    </div>
+
+    <br>
+
+    <table class="table table-horizontal table-bordered">
+       <thead class="thead-dark thead-strong">
+
+           <tr>
+               <th>게시글 번호</th>
+               <th>제목</th>
+               <th>작성자</th>
+               <th>최종 수정 모이야</th>
+           </tr>
+       </thead>
+
+        <tbody id="tbody">
+            {{#posts}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td><a href="posts/update/{{id}}">{{title}}</a></td>
+                    <td>{{author}}</td>
+                    <td>{{modifiedDate}}</td>
+                </tr>
+            {{/posts}}
+        </tbody>
+    </table>
+</div>
+{{>layout/footer}}
